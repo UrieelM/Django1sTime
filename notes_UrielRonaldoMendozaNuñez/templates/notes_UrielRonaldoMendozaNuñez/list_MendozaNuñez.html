@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Espacio entre las cartas */
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            width: calc(33.33% - 20px); /* Tres cartas por fila */
+            box-sizing: border-box;
+            transition: transform 0.3s;
+            text-decoration: none; /* Evita subrayado en enlaces */
+            color: inherit; /* Hereda el color del texto */
+            display: flex;
+            flex-direction: column; /* Coloca los elementos en columna */
+            justify-content: space-between; /* Espacio entre elementos para que la fecha esté al final */
+            min-height: 150px; /* Altura mínima para las tarjetas */
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            background-color: #f8f9fa; /* Color de fondo al pasar el mouse */
+        }
+        .card h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: #333;
+        }
+        .no-notes {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+        }
+        .card p {
+            margin: 0 0 10px;
+            color: #555;
+        }
+        .creation-date {
+            margin-top: auto; /* Empuja la fecha hacia abajo */
+            font-size: 14px; /* Tamaño de fuente más pequeño */
+            color: #888; /* Color más suave para la fecha */
+        }
+        .create-button {
+            display: block;
+            margin: 20px auto; /* Centra el botón */
+            padding: 10px 20px;
+            background-color: #28a745; /* Color verde */
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            width: 220px; /* Ancho del botón */
+        }
+        .create-button:hover {
+            background-color: #218838; /* Color más oscuro al pasar el mouse */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="link para crear notas" class="create-button">
+            <i class="fas fa-plus"></i> Crear Nota
+        </a>
+    </div>
+
+    <div class="container">
+        {% if lista_de_notas %}
+            {% for note in lista_de_notas %}
+                <div class="card">
+                    <a href="{% url 'notes:detail' note.id %}" style="text-decoration: none;">
+                        <h3>{{ note.title_note }}</h3>
+                        <p>{{ note.content_note|truncatewords:10 }} <strong>Ver más</strong></p>
+                        <p class="creation-date">{{ note.creation_date_note }}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-notes">No hay notas disponibles.</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Nota</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            position: relative;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.5;
+        }
+        .creation-date {
+            font-size: 14px;
+            color: #888;
+            margin-top: 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+        .button-container {
+            position: absolute;
+            bottom: 20px;
+            right: 20px; /* Align buttons to the right */
+            display: flex; /* Use flexbox to align buttons */
+            gap: 10px; /* Space between buttons */
+        }
+        .edit-button, .delete-button {
+            padding: 10px 15px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .edit-button {
+            background-color: #ffc107;
+        }
+        .edit-button:hover {
+            background-color: #e0a800;
+        }
+        .delete-button {
+            background-color: #dc3545; /* Red color for delete button */
+        }
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+        .icon {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ note.title_note }}</h1>
+        <p>{{ note.content_note }}</p>
+        <p class="creation-date"><strong>Fecha de creación:</strong> {{ note.creation_date_note }}</p>
+        <a class="back-link" href="{% url 'notes:list' %}">
+            <i class="fas fa-arrow-left icon"></i> Volver a la lista de notas
+        </a>
+        <div class="button-container">
+            <a class="edit-button" href="aqui va el link de editar">Editar Nota</a>
+            <a class="delete-button" href="aqui va el link de eliminar">Eliminar Nota</a>
+        </div>
+    </div>
+</body>
+</html>
