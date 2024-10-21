@@ -10,7 +10,7 @@ def list (request):
         "lista_de_notas": lista_de_notas,
     }
 
-    return render(request, "notes_UrielRonaldoMendozaNuñez\list_MendozaNuñez.html", context)
+    return render(request, "notes_UrielRonaldoMendozaNuñez/list_MendozaNuñez.html", context)
 
 def detail (request, note_id):
     note = get_object_or_404(Note, pk=note_id)
