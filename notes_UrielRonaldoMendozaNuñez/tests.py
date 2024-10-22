@@ -19,4 +19,4 @@ class NoteTestCase(TestCase):
         # Verificar detalles de la primera nota
         first_note = notes.first()
         self.assertEqual(first_note.title_note, "Comprar leche")
-        self.assertEqual(first_note.content_note, "Recordar comprar leche")
+        self.assertEqual(first_note.content_note, "Recordar comprar leche")

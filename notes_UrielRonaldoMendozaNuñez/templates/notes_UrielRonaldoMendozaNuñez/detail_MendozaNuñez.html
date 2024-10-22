@@ -46,9 +46,9 @@
         .button-container {
             position: absolute;
             bottom: 20px;
-            right: 20px; /* Align buttons to the right */
-            display: flex; /* Use flexbox to align buttons */
-            gap: 10px; /* Space between buttons */
+            right: 20px;
+            display: flex;
+            gap: 10px;
         }
         .edit-button, .delete-button {
             padding: 10px 15px;
@@ -65,7 +65,7 @@
             background-color: #e0a800;
         }
         .delete-button {
-            background-color: #dc3545; /* Red color for delete button */
+            background-color: #dc3545;
         }
         .delete-button:hover {
             background-color: #c82333;
@@ -81,14 +81,14 @@
         
         <p>{{ note.content_note }}</p>
         <p class="creation-date"><strong>Fecha de creación:</strong> {{ note.creation_date_note }}</p>
-        <p class="user-note"><strong>Nota de Usuario:</strong> {{ note.user.username }}</p> <!-- Mostrar el nombre del usuario -->
+        <p class="user-note"><strong>Nota de Usuario:</strong> {{ note.user.username }}</p>
         <a class="back-link" href="{% url 'notes:list' %}">
         
             <i class="fas fa-arrow-left icon"></i> Volver a la lista de notas
         </a>
         <div class="button-container">
             <a class="edit-button" href="{% url 'notes:edit' note.id %}">Editar Nota</a> 
-            <a class="delete-button" href="{% url 'notes:delete' note.id %}">Eliminar Nota</a>  <!-- Enlace a eliminar nota -->
+            <a class="delete-button" href="{% url 'notes:delete' note.id %}">Eliminar Nota</a>
         </div>
     </div>
 </body>
