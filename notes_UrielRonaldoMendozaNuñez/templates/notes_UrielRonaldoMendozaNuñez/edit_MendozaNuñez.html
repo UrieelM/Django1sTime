@@ -1,0 +1,121 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center; /* Centra horizontalmente */
+        align-items: center; /* Centra verticalmente */
+        height: 100vh; /* Ocupa toda la altura de la ventana */
+    }
+    .container {
+        max-width: 600px;
+        width: 100%; /* Hace que el contenedor ocupe el 100% de su padre */
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+    }
+    h1 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center; /* Centra el texto del encabezado */
+    }
+    p {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.5;
+    }
+    .creation-date, .user-note {
+        font-size: 14px;
+        color: #555;
+        margin-top: 10px;
+    }
+    .button-container {
+        margin-top: 20px;
+        display: flex; /* Flex para los botones */
+        justify-content: center; /* Centra los botones */
+    }
+    .confirm-button, .cancel-button, .submit-button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        cursor: pointer;
+    }
+    .confirm-button {
+        background-color: #dc3545; /* Red */
+        color: white;
+    }
+    .confirm-button:hover {
+        background-color: #c82333;
+    }
+    .cancel-button {
+        background-color: #007bff; /* Blue */
+        color: white;
+        margin-right: 10px; /* Espaciado entre botones */
+    }
+    .cancel-button:hover {
+        background-color: #0056b3;
+    }
+    .submit-button {
+        background-color: #28a745; /* Green */
+        color: white;
+    }
+    .submit-button:hover {
+        background-color: #218838;
+    }
+    /* Estilo para inputs y textareas */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea {
+        width: 100%; /* Ancho completo */
+        padding: 12px; /* Relleno interno */
+        border: 1px solid #ccc; /* Borde gris claro */
+        border-radius: 5px; /* Bordes redondeados */
+        margin-top: 10px; /* Espacio arriba */
+        margin-bottom: 20px; /* Espacio abajo */
+        font-size: 16px; /* Tamaño de texto */
+        transition: border-color 0.3s;
+    }
+    /* Efecto en focus */
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    textarea:focus {
+        border-color: #007bff; /* Color del borde en focus */
+        outline: none; /* Quitar el outline por defecto */
+    }
+    /* Estilo específico para textarea */
+    textarea {
+        height: 200px; /* Altura específica aumentada */
+        resize: none; /* Deshabilitar redimensionamiento */
+    }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>{% if note %} Editar Nota {% else %} Crear Nueva Nota {% endif %}</h1>
+
+{% if note %}
+    <p class="user-note"><strong>Nota de Usuario:</strong> {{ note.user.username }}</p>
+    <p class="creation-date"><strong>Fecha de creación:</strong> {{ note.creation_date_note }}</p>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Muestra el formulario con todos los campos, incluido el de usuario -->
+    <button type="submit" class="submit-button">{% if note %} Confirmar {% else %} Crear Nota {% endif %}</button>
+</form>
+
+<div class="button-container">
+    <a href="{% url 'notes:list' %}" class="cancel-button">Cancelar</a>
+</div>
+</div>
+</body>
+</html>
